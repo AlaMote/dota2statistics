@@ -1,0 +1,58 @@
+matches = {
+	{
+		match_id: 1,
+		team_1: {
+			score: 25,
+			name: "team_1",
+			logo: /* тут base64 строка */
+		},
+		team_2: {
+			score: 40,
+			name: "team_2",
+			logo: /* тут base64 строка */
+		}
+	}
+};
+
+match_results = {
+	{
+		player: {
+			name: "player_name",
+			city: "player_city"
+		},
+		unit: "Abaddon",
+		team: {
+			team_id: 1,
+			title: "team_1_title",
+			country: "team_1_country"
+		}
+		match_id: 1,
+		gold: 10000,
+		damage: 10000,
+		kills: 10,
+		deathes: 10,
+		assist: 10,
+		creep_kills: 10,
+		creep_denied: 10		
+	},
+	{
+		player: {
+			name: "player_2_name",
+			city: "player_2_city"
+		},
+		unit: "Tiny",
+		team: {
+			team_id: 1,
+			title: "team_1_title",
+			country: "team_1_country"
+		}
+		match_id: 1,
+		gold: 10000,
+		damage: 10000,
+		kills: 10,
+		deathes: 10,
+		assist: 10,
+		creep_kills: 10,
+		creep_denied: 10		
+	}
+};
