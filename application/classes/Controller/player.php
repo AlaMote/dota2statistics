@@ -23,6 +23,7 @@ class Controller_Player extends Controller_Common
         $this->template->content = View::factory("pages/players");
 
         $this->template->players = $players;
+        
 
     }
 }
