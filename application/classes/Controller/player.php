@@ -3,27 +3,39 @@ defined('SYSPATH') or die('No direct script access.');
 
 class Controller_Player extends Controller_Common
 {
-    public function action_player()
+    public function action_index()
     {
-        $id = intval($this->request->param('id'));
+        $player_id = $this->request->param('id');
 
+        if ($player_id == NULL) {
+            //ORM::factory("player")->randomize(500);
 
-        $this->template->title = "Информация об игроке | Dota 2 Statistics";
-        $this->template->content = View::factory("pages/player");
-    }
+            $this->template->title = "Игроки | Dota 2 Statistics";
+            $this->template->content = View::factory("pages/players");
 
-    public function action_players() {
+            $players = ORM::factory("player")->order_by('name')->limit('100')->find_all();
 
-        //ORM::factory("player")->randomize(1000);
+            $this->template->content->players = $players;
+        }
+        else {
+            $this->template->title = "Информация об игроке | Dota 2 Statistics";
+            $this->template->content = View::factory("pages/player");
 
-        $players = ORM::factory("player")->limit('100')->find_all();
+            $player = ORM::factory("player", $player_id);
+            if ($player->loaded()) {
+                $this->template->content->player = $player;
+            }
+            else {
+                $player = ORM::factory("player")->where("nick", "=", $player_id)->find();
+                if ($player->loaded()) {
+                    $this->template->content->player = $player;
+                }
+                else {
+                    $this->template->content->player = "not_found";
+                }
+            }
+        }
 
-
-        $this->template->title = "Игроки | Dota 2 Statistics";
-        $this->template->content = View::factory("pages/players");
-
-        $this->template->players = $players;
-        
 
     }
 }

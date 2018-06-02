@@ -153,15 +153,10 @@ Cookie::$salt = "2g34jh23gjh423g4hj23g4jh";
  */
 if(!Route::cache())
 {
-    Route::set('players', 'players')
-        ->defaults([
-            'controller' => 'player',
-            'action' => 'players',
-        ]);
     Route::set('player', 'player/<id>')
         ->defaults([
             'controller' => 'player',
-            'action' => 'player',
+            'action' => 'index',
         ]);
     Route::set('team', 'team/<id>')
         ->defaults([

@@ -1038,11 +1038,13 @@ class Model_Player extends ORM
             'Zamora',
             'Zimmerman'];
 
+
+        $team_id = 0;
         /* generate new data */
         for ($i = 0; $i < $amount; $i++) {
             try {
                 if ($i % 5 == 0)
-                    $team_id = rand(0, ORM::factory('team')->count_all());
+                    $team_id++;
                 $name = $first_names[rand(0, count($first_names) - 1)];
                 $last_name = $last_names[rand(0, count($last_names) - 1)];
                 $nick = substr($last_name, 0, 3) . substr($name, 3);

@@ -1,27 +1,40 @@
 <?php
 
-    /*
-     *
-     * $team_title
-     * $team_country
-     *
-     * $players = [[name, surname, nick, avatar], [...], ...]
-     *
-     * */
+/*
+ *
+ * $team->title
+ * $team->country->title
+ * $team->country->short_title
+ *
+ * $players = $team->players->find_all()
+ *
+ * $players->name
+ * $players->last_name
+ * $players->nick
+ * $players->avatar
+ *
+ * */
 
 ?>
-
-<h3>Страница с информацией об одной тиме</h3>
+    <h3>Страница с информацией об одной тиме</h3>
 
 <?php
-
-echo $team_title . "<br>";
-echo $team_country . "<br>";
-
-print_r($players);
-
-foreach($players as $p) {
-    echo $p->name . " " . $p->last_name . " " . $p->nick . "<br>";
-    echo "<img src='" . $p->avatar . "'>";
-    echo "<br>";
+if ($team == "not_found") {
+    ?>
+    <h4>Команда с таким id или названием не найдена.</h4>
+    <?php
+} else {
+    ?>
+    <span title='<?= $team->country->title ?>'>[<?= $team->country->short_title ?>]</span> <?= $team->title ?>
+    <br>
+    <br>
+    <?php
+    $players = $team->players->find_all();
+    foreach ($players as $p) {
+        ?>
+        <img width='48' src='<?= $p->avatar ?>'> <a href="/player/<?= $p->nick ?>"><?= $p->name ?> [<?= $p->nick ?>] <?= $p->last_name ?></a>
+        <br>
+        <br>
+        <?php
+    }
 }

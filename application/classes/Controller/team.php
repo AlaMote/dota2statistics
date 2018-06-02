@@ -5,20 +5,32 @@ class Controller_Team extends Controller_Common
 {
     public function action_index()
     {
-        $team_id = intval($this->request->param('id'));
+        $team_id = $this->request->param('id');
 
-        $team_info = ORM::factory("team", $team_id);
+        if ($team_id == NULL) {
+            $this->template->title = "Команди | Dota 2 Statistics";
+            $this->template->content = View::factory("pages/teams");
 
-        $team_title = "";
-        $team_country = "";
-        //$players = ORM::factory("player")->where("team_id", "=", $team_id)->find_all();
+            $teams = ORM::factory("team")->order_by("title")->limit("100")->find_all();
+            $this->template->content->teams = $teams;
 
-        $this->template->title = "Информация о команде | Dota 2 Statistics";
-        $this->template->content = View::factory("pages/team");
+        }
+        else {
+            $this->template->title = "Информация о команде | Dota 2 Statistics";
+            $this->template->content = View::factory("pages/team");
 
-        $this->template->content->team_title = $team_info->title;
-        $this->template->content->team_country = $team_info->country->country;
-        $this->template->content->players = $team_info->players;
+            $team = ORM::factory("team", $team_id);
+            if ($team->loaded()) {
+                $this->template->content->team = $team;
+            } else {
+                $team = ORM::factory("team", $team_id)->where("title", "=", $team_id)->find();
+                if ($team->loaded()) {
+                    $this->template->content->team = $team;
+                } else {
+                    $this->template->content->team = "not_found";
+                }
+            }
+        }
     }
 }
 
