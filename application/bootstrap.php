@@ -153,6 +153,11 @@ Cookie::$salt = "2g34jh23gjh423g4hj23g4jh";
  */
 if(!Route::cache())
 {
+    Route::set('match', 'match/<id>')
+        ->defaults([
+            'controller' => 'match',
+            'action' => 'index',
+        ]);
     Route::set('player', 'player/<id>')
         ->defaults([
             'controller' => 'player',
@@ -168,5 +173,5 @@ if(!Route::cache())
             'controller' => 'default',
             'action' => 'index',
         ]);
-    Route::cache(TRUE);
+    Route::cache(false);
 }

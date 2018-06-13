@@ -8,6 +8,10 @@ class Model_Team extends ORM
             'model' => 'country',
             'foreign_key' => 'country_id',
         ),
+        "match_result" => [
+            "model" => "match_result",
+            'foreign_key' => 'team_id',
+        ]
     );
     protected $_has_many = array(
         'players' => array(

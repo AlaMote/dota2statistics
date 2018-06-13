@@ -12,3 +12,5 @@
 <a href="/team">Все тимы</a>
 <br>
 <a href="/player">Все игроки</a>
+<br>
+<a href="/match">Все матчи</a>

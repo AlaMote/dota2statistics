@@ -8,7 +8,7 @@ class Controller_Team extends Controller_Common
         $team_id = $this->request->param('id');
 
         if ($team_id == NULL) {
-            $this->template->title = "Команди | Dota 2 Statistics";
+            $this->template->title = "Команды | Dota 2 Statistics";
             $this->template->content = View::factory("pages/teams");
 
             $teams = ORM::factory("team")->order_by("title")->limit("100")->find_all();

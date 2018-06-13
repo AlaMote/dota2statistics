@@ -30,7 +30,7 @@ class Controller_Common extends Controller_Template
             $this->template->meta_keywords = $this->meta_keywords;
             $this->template->meta_description = $this->meta_description;
             $this->template->meta_copywrite = $this->meta_copywrite;
-            $this->template->header = $this->header;
+            $this->template->header = "";
             $this->template->content = $this->content;
             $this->template->footer = $this->footer;
             $this->template->styles = $this->styles;

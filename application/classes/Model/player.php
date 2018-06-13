@@ -10,14 +10,21 @@ class Model_Player extends ORM
         ),
     );
 
+    protected $_has_many = [
+        'match_results' => array(
+            'model' => 'match_result',
+            'foreign_key' => 'player_id',
+        ),
+    ];
+
     public function randomize($amount = 100, $truncate = true)
     {
         /* truncate table */
         if ($truncate) {
             try {
                 $units = ORM::factory('player')->find_all();
-            } catch (Kohana_Exception $e) {
-            }
+            } catch (Kohana_Exception $e) {}
+
             foreach ($units as $unit) {
                 $unit->delete();
             }

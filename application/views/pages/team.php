@@ -31,6 +31,7 @@ if ($team == "not_found") {
     <?php
     $players = $team->players->find_all();
     foreach ($players as $p) {
+        print_r($p);
         ?>
         <img width='48' src='<?= $p->avatar ?>'> <a href="/player/<?= $p->nick ?>"><?= $p->name ?> [<?= $p->nick ?>] <?= $p->last_name ?></a>
         <br>
